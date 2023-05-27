@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export default function NextPreviousPostLinks({ nextPost, previousPost }) {
   return (
@@ -11,38 +12,39 @@ export default function NextPreviousPostLinks({ nextPost, previousPost }) {
         marginTop: `var(--space-xl)`,
       }}
     >
-      {nextPost && (
-        <Link
-          to={`/${nextPost.slug.current}`}
-          style={{ textDecoration: `none` }}
-        >
-          <div className="card">
-            {/* <img
-                srcSet={nextPost.mainImage.asset.fluid.srcSet}
-                sizes={nextPost.mainImage.asset.fluid.sizes}
-                alt=""
-              /> */}
-            <h4 className="card-heading">Next Post</h4>
-            <h4 className="card-text ">{nextPost.title}</h4>
-          </div>
-        </Link>
-      )}
-      {previousPost && (
-        <Link
-          to={`/${previousPost.slug.current}`}
-          style={{ textDecoration: `none` }}
-        >
-          <div className="card">
-            {/* <img
-                srcSet={previousPost.mainImage.asset.fluid.srcSet}
-                sizes={previousPost.mainImage.asset.fluid.sizes}
-                alt=""
-              /> */}
-            <h4 className="card-heading">Previous Post</h4>
-            <h4 className="card-text">{previousPost.title}</h4>
-          </div>
-        </Link>
-      )}
+      {nextPost && <Next {...nextPost} />}
+      {previousPost && <Previous {...previousPost} />}
     </div>
+  );
+}
+
+function Next(nextPost) {
+  const image = getImage(nextPost.mainImage.asset);
+
+  return (
+    <Link to={`/${nextPost.slug.current}`} style={{ textDecoration: `none` }}>
+      <div className="card">
+        <GatsbyImage image={image} alt={nextPost.title} />
+        <h4 className="card-heading">Next Post</h4>
+        <h4 className="card-text ">{nextPost.title}</h4>
+      </div>
+    </Link>
+  );
+}
+
+function Previous(previousPost) {
+  const image = getImage(previousPost.mainImage.asset);
+
+  return (
+    <Link
+      to={`/${previousPost.slug.current}`}
+      style={{ textDecoration: `none` }}
+    >
+      <div className="card">
+        <GatsbyImage image={image} alt={previousPost.title} />
+        <h4 className="card-heading">Previous Post</h4>
+        <h4 className="card-text">{previousPost.title}</h4>
+      </div>
+    </Link>
   );
 }

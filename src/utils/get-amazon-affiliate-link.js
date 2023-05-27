@@ -1,4 +1,3 @@
-// bc used in gatsby-node
 const { AWS_ASSOCIATE_ID } = require("./constants");
 
 function getAmazonAffiliateLink(ASIN) {

@@ -130,6 +130,7 @@ export default function PostTemplate({ data, pageContext }) {
             nextPost={pageContext.nextPost}
             previousPost={pageContext.previousPost}
           />
+          <hr />
         </section>
       </div>
     </Layout>

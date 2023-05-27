@@ -91,6 +91,11 @@ exports.createPages = async ({ graphql, actions }) => {
             youtubeVideoId
             videoMusicCredit
             _rawBody
+            mainImage {
+              asset {
+                gatsbyImageData(layout: CONSTRAINED, width: 800)
+              }
+            }
             ingredients {
               ASIN
               text
@@ -128,41 +133,4 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
-  const allIngredients = await graphql(`
-    query {
-      allSanityIngredient {
-        edges {
-          node {
-            text
-            _id
-            slug {
-              current
-            }
-            posts {
-              _id
-              title
-              slug {
-                current
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  //   const ingredients = allIngredients.data.allSanityIngredient.edges;
-
-  //   ingredients.forEach((edge) => {
-  //     if (edge.node.slug) {
-  //       createPage({
-  //         path: `/ingredients/${edge.node.slug.current}`,
-  //         component: path.resolve(`./src/templates/ingredient-template.js`),
-  //         context: {
-  //           slug: edge.node.slug.current,
-  //         },
-  //       });
-  //     }
-  //   });
 };
