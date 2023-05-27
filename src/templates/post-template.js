@@ -14,11 +14,25 @@ import getAmazonAffiliateLink from "../utils/get-amazon-affiliate-link";
 export default function PostTemplate({ data, pageContext }) {
   const post = data.sanityPost;
 
+  const gearAsins = post.gear.filter((gear) => gear.ASIN !== null).slice(0, 4);
+
   const image = getImage(post.mainImage.asset);
 
   return (
     <Layout>
       <SEO title={`${post.title}`} description={post.subtitle} />
+      {/* <iframe
+        sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin"
+        style={{
+          width: `120px`,
+          height: `240px`,
+        }}
+        marginwidth="0"
+        marginheight="0"
+        scrolling="no"
+        frameborder="0"
+        src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=homerice05-20&language=en_US&marketplace=amazon&region=US&placement=B089P3X44P&asins=B089P3X44P&linkId=bbff281188af2dcaba2d817332f56a56&show_border=true&link_opens_in_new_window=true"
+      ></iframe> */}
       <div className="container padding">
         <article>
           <h1 className="text--xxxl center" style={{ marginBlockStart: `0` }}>
