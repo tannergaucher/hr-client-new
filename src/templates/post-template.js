@@ -43,7 +43,7 @@ export default function PostTemplate({ data, pageContext }) {
             }}
           />
           {post._rawBody && <BlockContent blocks={post._rawBody} />}
-          {post.ingredients && (
+          {post.ingredients.length > 0 && (
             <>
               <hr />
               <h2>Ingredients</h2>
@@ -80,7 +80,7 @@ export default function PostTemplate({ data, pageContext }) {
               <hr />
             </>
           )}
-          {post.gear && (
+          {post.gear.length > 0 && (
             <section>
               <h2>Gear</h2>
               <ul>
