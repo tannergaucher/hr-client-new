@@ -84,27 +84,29 @@ export default function PostTemplate({ data, pageContext }) {
             <section>
               <h2>Gear</h2>
               <ul>
-                {post.gear.map((gear) => (
-                  <li key={gear._id}>
-                    {gear.ASIN ? (
-                      <a
-                        href={getAmazonAffiliateLink(gear.ASIN)}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <p
-                          style={{
-                            marginBlockEnd: 0,
-                          }}
+                {post.gear
+                  .filter((gear) => gear._id)
+                  .map((gear) => (
+                    <li key={gear._id}>
+                      {gear.ASIN ? (
+                        <a
+                          href={getAmazonAffiliateLink(gear.ASIN)}
+                          target="_blank"
+                          rel="noreferrer"
                         >
-                          {gear.text}
-                        </p>
-                      </a>
-                    ) : (
-                      <p>{gear.text}</p>
-                    )}
-                  </li>
-                ))}
+                          <p
+                            style={{
+                              marginBlockEnd: 0,
+                            }}
+                          >
+                            {gear.text}
+                          </p>
+                        </a>
+                      ) : (
+                        <p>{gear.text}</p>
+                      )}
+                    </li>
+                  ))}
               </ul>
               <hr />
             </section>
