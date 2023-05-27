@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 import useSiteMetadata from "../hooks/use-site-metadata";
 
-function SEO({ description, lang, meta, title }) {
+export default function SEO({ description, lang, meta, title }) {
   const {
     title: metadataTitle,
     description: metadataDescription,
@@ -70,5 +70,3 @@ SEO.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 };
-
-export default SEO;

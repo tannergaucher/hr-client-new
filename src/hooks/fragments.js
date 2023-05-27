@@ -15,21 +15,17 @@ export const POST_FRAGMENT = graphql`
     title
     subtitle
     _rawBody
+    _rawRecipe
     youtubeVideoId
     mainImage {
       asset {
-        gatsbyImageData(layout: CONSTRAINED, width: 800)
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
       }
     }
     ingredients {
       _id
       text
       ASIN
-      image {
-        asset {
-          gatsbyImageData(layout: CONSTRAINED, width: 800)
-        }
-      }
       slug {
         current
       }

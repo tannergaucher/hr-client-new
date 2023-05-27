@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
+// eslint-disable-next-line
 import styles from "semantic-styles/index.css";
 import "../index.css";
 

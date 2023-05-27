@@ -1,25 +1,20 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
-import { Helmet } from "react-helmet";
-
-import getAmazonAffiliateLink from "../utils/get-amazon-affiliate-link";
-import getSortedPostIngredients from "../utils/get-sorted-post-ingredients";
+import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import {
   SEO,
   Layout,
-  // IngredientsForm,
   BlockContent,
-  AffiliateLinkDisclaimer,
   YoutubeEmbedPlayer,
   NextPreviousPostLinks,
-  // ContentCard,
 } from "../components";
+import getAmazonAffiliateLink from "../utils/get-amazon-affiliate-link";
 
 export default function PostTemplate({ data, pageContext }) {
   const post = data.sanityPost;
 
-  console.log(post);
+  const image = getImage(post.mainImage.asset);
 
   return (
     <Layout>
@@ -38,35 +33,84 @@ export default function PostTemplate({ data, pageContext }) {
           >
             {post.subtitle}
           </h2>
-          {/* {post.ingredients.length > 0 && (
-            <IngredientsForm
-              ingredients={post.ingredients}
-              optionalIngredients={post.optionalIngredients}
-            />
-          )} */}
-          {/* {post.gear.length > 0 && (
+          <GatsbyImage
+            image={image}
+            alt={post.title}
+            style={{
+              width: `100%`,
+              height: `100%`,
+              marginBlockStart: `var(--space-xl)`,
+            }}
+          />
+          {post._rawBody && <BlockContent blocks={post._rawBody} />}
+          {post.ingredients && (
             <>
-              <h3>Gear</h3>
+              <hr />
+              <h2>Ingredients</h2>
               <ul>
-                {post.gear.map((gearItem) =>
-                  gearItem._id ? (
-                    <li key={gearItem._id}>
+                {post.ingredients.map((ingredient) => (
+                  <li key={ingredient._id}>
+                    {ingredient.ASIN ? (
                       <a
-                        href={getAmazonAffiliateLink(gearItem.ASIN)}
+                        href={getAmazonAffiliateLink(ingredient.ASIN)}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        {gearItem.text}
+                        <p
+                          style={{
+                            marginBlockEnd: 0,
+                          }}
+                        >
+                          {ingredient.text}
+                        </p>
                       </a>
-                    </li>
-                  ) : null
-                )}
+                    ) : (
+                      <p>{ingredient.text}</p>
+                    )}
+                  </li>
+                ))}
               </ul>
             </>
-          )} */}
-          {post._rawBody && <BlockContent blocks={post._rawBody} />}
-          <section style={{ marginBlockStart: `var(--space-xl)` }}>
-            {post.youtubeVideoId ? (
+          )}
+          {post._rawRecipe && (
+            <>
+              <hr />
+              <h2>Recipe</h2>
+              <BlockContent blocks={post._rawRecipe} />
+              <hr />
+            </>
+          )}
+          {post.gear && (
+            <section>
+              <h2>Gear</h2>
+              <ul>
+                {post.gear.map((gear) => (
+                  <li key={gear._id}>
+                    {gear.ASIN ? (
+                      <a
+                        href={getAmazonAffiliateLink(gear.ASIN)}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <p
+                          style={{
+                            marginBlockEnd: 0,
+                          }}
+                        >
+                          {gear.text}
+                        </p>
+                      </a>
+                    ) : (
+                      <p>{gear.text}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <hr />
+            </section>
+          )}
+          {post.youtubeVideoId ? (
+            <section style={{ marginBlockStart: `var(--space-xl)` }}>
               <YoutubeEmbedPlayer
                 title={post.title}
                 youtubeVideoId={post.youtubeVideoId}
@@ -77,15 +121,9 @@ export default function PostTemplate({ data, pageContext }) {
                   height: `100%`,
                 }}
               />
-            ) : (
-              <>{/* <Img fluid={post.mainImage.asset.fluid} /> */}</>
-            )}
-          </section>
+            </section>
+          ) : null}
         </article>
-
-        <section style={{ marginTop: `var(--space-xl)` }}>
-          <AffiliateLinkDisclaimer />
-        </section>
         <hr className="hr" />
         <section>
           <NextPreviousPostLinks

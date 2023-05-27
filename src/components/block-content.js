@@ -1,6 +1,6 @@
 import React from "react";
 import { getGatsbyImageData } from "gatsby-source-sanity";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import BlockContent from "@sanity/block-content-to-react";
 
 const sanityConfig = {
