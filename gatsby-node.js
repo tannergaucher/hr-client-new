@@ -81,7 +81,7 @@ exports.createPages = async ({ graphql, actions }) => {
     query {
       allSanityPost(
         filter: { draft: { eq: false } }
-        sort: { fields: publishedAt, order: DESC }
+        sort: { publishedAt: DESC }
       ) {
         edges {
           node {

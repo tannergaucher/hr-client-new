@@ -16,24 +16,20 @@ export const POST_FRAGMENT = graphql`
     subtitle
     _rawBody
     youtubeVideoId
-    #     mainImage {
-    #       asset {
-    #         fluid(maxWidth: 1200) {
-    #           ...GatsbySanityImageFluid
-    #         }
-    #       }
-    #     }
+    mainImage {
+      asset {
+        gatsbyImageData(layout: CONSTRAINED, width: 800)
+      }
+    }
     ingredients {
       _id
       text
       ASIN
-      #  image {
-      #    asset {
-      #      fluid(maxWidth: 1200) {
-      #        ...GatsbySanityImageFluid
-      #      }
-      #    }
-      #  }
+      image {
+        asset {
+          gatsbyImageData(layout: CONSTRAINED, width: 800)
+        }
+      }
       slug {
         current
       }
