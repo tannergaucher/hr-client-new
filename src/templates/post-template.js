@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
+import { Helmet } from "react-helmet";
 
 import getAmazonAffiliateLink from "../utils/get-amazon-affiliate-link";
 import getSortedPostIngredients from "../utils/get-sorted-post-ingredients";
@@ -21,6 +22,18 @@ export default function PostTemplate({ data, pageContext }) {
   return (
     <Layout>
       <SEO title={`${post.title}`} description={post.subtitle} />
+      <Helmet>
+        <script type="text/javascript">
+          amzn_assoc_placement = "adunit0"; amzn_assoc_search_bar = "true";
+          amzn_assoc_tracking_id = "homerice05-20"; amzn_assoc_ad_mode =
+          "manual"; amzn_assoc_ad_type = "smart"; amzn_assoc_marketplace =
+          "amazon"; amzn_assoc_region = "US"; amzn_assoc_title = "My Amazon
+          Picks"; amzn_assoc_linkid = "dd041eaf69f042eca55cdd2829cfd5c4";
+          amzn_assoc_asins =
+          "B00KOBSN7C,B013HB0CC4,B07BDRMFDZ,B01EWVOSXW,B00P2QI8E2";
+        </script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+      </Helmet>
       <div className="container padding">
         <article>
           <h1 className="text--xxxl center" style={{ marginBlockStart: `0` }}>

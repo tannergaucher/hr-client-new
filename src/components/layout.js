@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
           <h1
             className="center text--xl"
             style={{
-              marginBlockStart: `var(--space-md)`,
+              marginBlockStart: `var(--space-lg)`,
               marginBlockEnd: `var(--space-lg)`,
               fontWeight: `normal`,
             }}

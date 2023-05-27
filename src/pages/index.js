@@ -36,16 +36,45 @@ export default function IndexPage({ data }) {
                 >
                   {node.subtitle}
                 </p>
-                <a href={`/${node.slug.current}`}>
-                  <p
-                    style={{
-                      marginBlockStart: `0`,
-                      padding: `0 var(--space-sm)`,
-                    }}
-                  >
-                    <em>View Post</em>
-                  </p>
-                </a>
+                <section
+                  style={{
+                    padding: `0 var(--space-sm)`,
+                    display: `flex`,
+                    justifyContent: `space-between`,
+                    alignItems: `baseline`,
+                  }}
+                >
+                  <a href={`/${node.slug.current}`}>
+                    <p
+                      style={{
+                        marginBlockStart: `0`,
+                      }}
+                    >
+                      <em>View Post</em>
+                    </p>
+                  </a>
+                  <div>
+                    {node.tags.map((tag) => {
+                      return (
+                        <a
+                          href={`/tags/${tag.slug.current}`}
+                          key={tag._id}
+                          style={{
+                            marginRight: `var(--space-sm)`,
+                          }}
+                        >
+                          <small
+                            style={{
+                              marginBlockStart: `0`,
+                            }}
+                          >
+                            #{tag.text}
+                          </small>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </section>
               </section>
             </div>
           );
@@ -59,7 +88,7 @@ export const pageQuery = graphql`
   query {
     allSanityPost(
       filter: { draft: { eq: false } }
-      sort: { fields: publishedAt, order: DESC }
+      sort: { publishedAt: DESC }
     ) {
       edges {
         node {
@@ -73,6 +102,15 @@ export const pageQuery = graphql`
           }
           slug {
             current
+          }
+          tags {
+            _id
+            text
+            slug {
+              _key
+              _type
+              current
+            }
           }
         }
       }
