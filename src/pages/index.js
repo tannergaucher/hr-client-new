@@ -10,66 +10,26 @@ export default function IndexPage({ data }) {
   return (
     <Layout>
       <title>Home Page</title>
-      <div className="container">
+      <div>
         {posts.map(({ node }) => {
           const image = getImage(node.mainImage.asset);
           return (
-            <div
-              classNamE="card"
-              key={node.id}
-              style={{
-                display: `grid`,
-                gap: `var(--space-lg)`,
-                gridTemplateColumns: `1fr 2fr`,
-                gridTemplateRows: `1fr`,
-                marginBlockEnd: `var(--space-lg)`,
-              }}
-            >
+            <div key={node.id}>
               <GatsbyImage image={image} alt={node.title} />
               <section>
                 <h2 className="card-heading">{node.title}</h2>
-                <p
-                  className="card-text"
-                  style={{
-                    paddingBottom: `var(--space-sm)`,
-                  }}
-                >
-                  {node.subtitle}
-                </p>
-                <section
-                  style={{
-                    padding: `0 var(--space-sm)`,
-                    display: `flex`,
-                    justifyContent: `space-between`,
-                    alignItems: `baseline`,
-                  }}
-                >
+                <p>{node.subtitle}</p>
+                <section>
                   <a href={`/${node.slug.current}`}>
-                    <p
-                      style={{
-                        marginBlockStart: `0`,
-                      }}
-                    >
+                    <p>
                       <em>View Post</em>
                     </p>
                   </a>
                   <div>
                     {node.tags.map((tag) => {
                       return (
-                        <a
-                          href={`/tags/${tag.slug.current}`}
-                          key={tag._id}
-                          style={{
-                            marginRight: `var(--space-sm)`,
-                          }}
-                        >
-                          <small
-                            style={{
-                              marginBlockStart: `0`,
-                            }}
-                          >
-                            #{tag.text}
-                          </small>
+                        <a href={`/tags/${tag.slug.current}`} key={tag._id}>
+                          <small>#{tag.text}</small>
                         </a>
                       );
                     })}

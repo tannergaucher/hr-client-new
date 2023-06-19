@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
-// eslint-disable-next-line
-import styles from "semantic-styles/index.css";
 import "../index.css";
 
 const Layout = ({ children }) => {
@@ -10,48 +8,29 @@ const Layout = ({ children }) => {
     <div>
       <header>
         <nav>
-          <h1
-            className="center text--xl"
-            style={{
-              marginBlockStart: `var(--space-lg)`,
-              marginBlockEnd: `var(--space-lg)`,
-              fontWeight: `normal`,
-              textShadow: `.33vw .33vw tomato`,
-            }}
-          >
-            <Link
-              to="/"
-              style={{
-                textDecoration: `none`,
-              }}
-            >
+          <h1>
+            <Link to="/">
               <em>HOME RICE</em>
             </Link>
+            <ul>
+              <li>
+                <Link to="/tags">Tags</Link>
+              </li>
+              <li>
+                <Link to="/gear">Gear</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+            </ul>
           </h1>
         </nav>
       </header>
-      <main className="padding">{children}</main>
-      <footer
-        style={{
-          display: `initial`,
-        }}
-      >
+      <main>{children}</main>
+      <footer>
         <nav>
-          <h1
-            className="center text--xl"
-            style={{
-              marginBlockStart: `var(--space-lg)`,
-              marginBlockEnd: `var(--space-lg)`,
-              fontWeight: `normal`,
-              textShadow: `.33vw .33vw tomato`,
-            }}
-          >
-            <Link
-              to="/"
-              style={{
-                textDecoration: `none`,
-              }}
-            >
+          <h1>
+            <Link to="/">
               <em>HOME RICE</em>
             </Link>
           </h1>

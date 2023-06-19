@@ -5,11 +5,10 @@ export default function AffiliateLinkDisclaimer() {
     <>
       <blockquote
         className="blockquote"
-        style={{ padding: `0` }}
         cite="https://affiliate-program.amazon.com/"
       >
-        <h4 className="card-heading text--sm">Note</h4>
-        <p className="card-text text--sm">
+        <h4>Note</h4>
+        <p>
           <i>This page contains Amazon affiliate links</i>
         </p>
       </blockquote>

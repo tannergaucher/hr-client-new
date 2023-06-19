@@ -19,17 +19,9 @@ const serializers = {
       );
 
       return (
-        <figure
-          className="figure"
-          style={{ marginBottom: `var(--space-lg)`, borderRadius: `0` }}
-        >
+        <figure>
           <GatsbyImage image={imageData} alt={node.title} />
-          <figcaption
-            className="figcaption text--sm"
-            style={{ fontStyle: ``, marginTop: `var(--space-sm)` }}
-          >
-            {node.caption}
-          </figcaption>
+          <figcaption>{node.caption}</figcaption>
         </figure>
       );
     },

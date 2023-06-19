@@ -1,6 +1,5 @@
 import AffiliateLinkDisclaimer from "./affiliate-link-disclaimer";
 import BlockContent from "./block-content";
-import ContentCard from "./content-card";
 import IngredientsForm from "./ingredients-form";
 import IngredientsFormItem from "./ingredients-form-item";
 import Layout from "./layout";
@@ -11,7 +10,6 @@ import YoutubeEmbedPlayer from "./youtube-embed-player";
 export {
   AffiliateLinkDisclaimer,
   BlockContent,
-  ContentCard,
   IngredientsForm,
   IngredientsFormItem,
   Layout,
